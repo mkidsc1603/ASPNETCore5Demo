@@ -20,7 +20,11 @@ namespace ASPNETCore5Demo.Controllers
         [HttpGet("")]
         public async Task<ActionResult<IEnumerable<Course>>> GetCourse()
         {
-            await Task.Yield();
+            for (int i = 0; i < 5000; i++)
+            {
+                await Task.Yield();
+            }
+
             return this.db.Course.ToList();
         }
 
@@ -60,6 +64,8 @@ namespace ASPNETCore5Demo.Controllers
             var c = this.db.Course.Find(id);
             c.Credits = course.Credits;
             c.DepartmentId = course.DepartmentId;
+
+            this.db.Course.Update(c);
 
             await this.db.SaveChangesAsync();
             return NoContent();
