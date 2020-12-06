@@ -10,16 +10,19 @@ using Microsoft.EntityFrameworkCore;
 namespace ASPNETCore5Demo.Models
 {
     [Keyless]
-    public partial class VwCourseStudentCount
+    public partial class VwCourseStudents
     {
         [Column("DepartmentID")]
         public int? DepartmentId { get; set; }
         [StringLength(50)]
-        public string Name { get; set; }
+        public string DepartmentName { get; set; }
         [Column("CourseID")]
         public int CourseId { get; set; }
         [StringLength(50)]
-        public string Title { get; set; }
-        public int? StudentCount { get; set; }
+        public string CourseTitle { get; set; }
+        [Column("StudentID")]
+        public int? StudentId { get; set; }
+        [StringLength(101)]
+        public string StudentName { get; set; }
     }
 }

@@ -23,7 +23,7 @@ namespace ASPNETCore5Demo.Controllers
       // TODO: Your code here
       await Task.Yield();
 
-      return this.db.Courses.ToList();
+      return this.db.Course.ToList();
     }
 
     // [HttpGet("{id}")]
