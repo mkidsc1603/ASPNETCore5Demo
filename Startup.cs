@@ -36,7 +36,7 @@ namespace ASPNETCore5Demo
 
             // resolve circular reference of db model navigation property
             services.AddControllers().AddNewtonsoftJson(options => options.SerializerSettings.ReferenceLoopHandling = ReferenceLoopHandling.Ignore);
-                
+
             services.AddSwaggerGen(c =>
             {
                 c.SwaggerDoc("v1", new OpenApiInfo { Title = "ASPNETCore5Demo", Version = "v1" });

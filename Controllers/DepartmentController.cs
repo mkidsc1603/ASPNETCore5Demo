@@ -32,8 +32,10 @@ namespace ASPNETCore5Demo.Controllers
         {
             await Task.Yield();
 
-            return this.db.Department.Include(p => p.Course)
-                .First(p => p.DepartmentId == id).Course.ToList();
+            // return this.db.Department.Include(p => p.Course)
+            //     .First(p => p.DepartmentId == id).Course.ToList();
+
+            return this.db.Course.Where(c => c.DepartmentId == id).ToList();
         }
 
         [HttpPost("")]
