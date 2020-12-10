@@ -57,6 +57,7 @@ namespace ASPNETCore5Demo.Controllers
             var d = this.db.Department.Find(id);
             d.Name = model.Name;
 
+            this.db.Department.Update(d);
             await this.db.SaveChangesAsync();
             return Ok(d);
         }
