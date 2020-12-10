@@ -22,7 +22,7 @@ namespace ASPNETCore5Demo.Controllers
         [HttpGet]
         public IEnumerable<CourseInstructor> Get()
         {
-            return this.db.CourseInstructor.ToList();
+            return db.CourseInstructor.ToList();
         }
 
         [HttpGet("/course/{CourseId?}/instructor/{InstructorId?}")]
