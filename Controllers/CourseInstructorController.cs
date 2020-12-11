@@ -19,12 +19,22 @@ namespace ASPNETCore5Demo.Controllers
             this.db = db;
         }
 
+        /// <summary>
+        /// 取得課程導師
+        /// </summary>
+        /// <returns></returns>
         [HttpGet]
         public IEnumerable<CourseInstructor> Get()
         {
             return db.CourseInstructor.ToList();
         }
 
+        /// <summary>
+        /// 取得課程導師 By 課程id、指導者id
+        /// </summary>
+        /// <param name="CourseId"></param>
+        /// <param name="InstructorId"></param>
+        /// <returns></returns>
         [HttpGet("/course/{CourseId?}/instructor/{InstructorId?}")]
         public IEnumerable<CourseInstructor> Get(int? CourseId, int? InstructorId)
         {
@@ -37,6 +47,11 @@ namespace ASPNETCore5Demo.Controllers
             return query.ToList();
         }
 
+        /// <summary>
+        /// 新增課程導師
+        /// </summary>
+        /// <param name="model"></param>
+        /// <returns></returns>
         [HttpPost]
         public IActionResult Post([FromBody] CourseInstructor model)
         {
@@ -55,6 +70,12 @@ namespace ASPNETCore5Demo.Controllers
             return Created($"api/CourseInstructor/course/{model.CourseId}/instructor/{model.InstructorId}", model);
         }
 
+        /// <summary>
+        /// 更新課程導師
+        /// </summary>
+        /// <param name="CourseId"></param>
+        /// <param name="InstructorId"></param>
+        /// <returns></returns>
         [HttpPut("/course/{CourseId}")]
         public IActionResult Put(int CourseId, [FromBody] int InstructorId)
         {
@@ -68,6 +89,12 @@ namespace ASPNETCore5Demo.Controllers
             return NoContent();
         }
 
+        /// <summary>
+        /// 刪除課程導師
+        /// </summary>
+        /// <param name="CourseId"></param>
+        /// <param name="InstructorId"></param>
+        /// <returns></returns>
         [HttpDelete("/course/{CourseId}/instructor/{InstructorId}")]
         public IActionResult Delete(int CourseId, int InstructorId)
         {

@@ -17,6 +17,10 @@ namespace ASPNETCore5Demo.Controllers
             this.db = db;
         }
 
+        /// <summary>
+        /// 取得課程
+        /// </summary>
+        /// <returns></returns>
         [HttpGet("")]
         public async Task<ActionResult<IEnumerable<Course>>> GetCourse()
         {
@@ -28,6 +32,11 @@ namespace ASPNETCore5Demo.Controllers
             return this.db.Course.ToList();
         }
 
+        /// <summary>
+        /// 取得單一課程
+        /// </summary>
+        /// <param name="id"></param>
+        /// <returns></returns>
         [HttpGet("{id}")]
         public async Task<ActionResult<Course>> GetCourseById(int id)
         {
@@ -35,6 +44,35 @@ namespace ASPNETCore5Demo.Controllers
             return this.db.Course.Find(id);
         }
 
+        /// <summary>
+        /// 取得課程的學生
+        /// </summary>
+        /// <param name="id"></param>
+        /// <returns></returns>
+        [HttpGet("{id}/students")]
+        public async Task<IEnumerable<VwCourseStudents>> GetCourseStudentsById(int id)
+        {
+            await Task.Yield();
+            return this.db.VwCourseStudents.Where(cs => cs.CourseId == id).ToList();
+        }
+
+        /// <summary>
+        /// 取得課程的學生
+        /// </summary>
+        /// <param name="id"></param>
+        /// <returns></returns>
+        [HttpGet("{id}/students/count")]
+        public async Task<IEnumerable<VwCourseStudentCount>> GetCourseStudentCountById(int id)
+        {
+            await Task.Yield();
+            return this.db.VwCourseStudentCount.Where(cs => cs.CourseId == id).ToList();
+        }
+
+        /// <summary>
+        /// 取得課程 By credit
+        /// </summary>
+        /// <param name="credit"></param>
+        /// <returns></returns>
         [HttpGet("credit/{credit}")]
         public async Task<ActionResult<IEnumerable<Course>>> GetCourseByCredit(int credit)
         {
@@ -42,6 +80,12 @@ namespace ASPNETCore5Demo.Controllers
             return this.db.Course.Where(c => c.Credits == credit).ToList();
         }
 
+        /// <summary>
+        /// 取得課程 By 部門、credit
+        /// </summary>
+        /// <param name="department"></param>
+        /// <param name="credit"></param>
+        /// <returns></returns>
         [HttpGet("credit/{credit}/departmnet/{department}")]
         public async Task<ActionResult<IEnumerable<Course>>> GetCourseByCreditAndDepartment(int department, int credit)
         {
@@ -49,6 +93,11 @@ namespace ASPNETCore5Demo.Controllers
             return this.db.Course.Where(x => x.DepartmentId == department && x.Credits == credit).ToList();
         }
 
+        /// <summary>
+        /// 新增課程
+        /// </summary>
+        /// <param name="coures"></param>
+        /// <returns></returns>
         [HttpPost("")]
         public async Task<ActionResult> PostCourse(Course coures)
         {
@@ -58,6 +107,12 @@ namespace ASPNETCore5Demo.Controllers
             return Created($"api/GetCourseById/{coures.CourseId}", coures);
         }
 
+        /// <summary>
+        /// 更新課程
+        /// </summary>
+        /// <param name="id"></param>
+        /// <param name="course"></param>
+        /// <returns></returns>
         [HttpPut("{id}")]
         public async Task<ActionResult> PutCourse(int id, Course course)
         {
@@ -71,6 +126,11 @@ namespace ASPNETCore5Demo.Controllers
             return NoContent();
         }
 
+        /// <summary>
+        /// 刪除課程
+        /// </summary>
+        /// <param name="id"></param>
+        /// <returns></returns>
         [HttpDelete("{id}")]
         public async Task<ActionResult> DeleteCourse(int id)
         {

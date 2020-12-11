@@ -18,6 +18,10 @@ namespace ASPNETCore5Demo.Controllers
             this.db = db;
         }
 
+        /// <summary>
+        /// 眔场
+        /// </summary>
+        /// <returns></returns>
         [HttpGet("")]
         public async Task<ActionResult<IEnumerable<Department>>> GetDepartments()
         {
@@ -27,6 +31,11 @@ namespace ASPNETCore5Demo.Controllers
             return this.db.Department.ToList();
         }
 
+        /// <summary>
+        /// 眔虫场
+        /// </summary>
+        /// <param name="id"></param>
+        /// <returns></returns>
         [HttpGet("{id}")]
         public async Task<ActionResult<IEnumerable<Course>>> GetDepartmentCourses(int id)
         {
@@ -38,6 +47,25 @@ namespace ASPNETCore5Demo.Controllers
             return this.db.Course.Where(c => c.DepartmentId == id).ToList();
         }
 
+        /// <summary>
+        /// 眔场揭祘计
+        /// </summary>
+        /// <param name="id"></param>
+        /// <returns></returns>
+        [HttpGet("{id}/course/count")]
+        public async Task<ActionResult<IEnumerable<VwDepartmentCourseCount>>> GetDepartmentCoursesCount(int id)
+        {
+            await Task.Yield();
+            return this.db.VwDepartmentCourseCount
+                .FromSqlRaw($"SELECT * FROM VwDepartmentCourseCount WHERE DepartmentId = {id}")
+                .ToList();
+        }
+
+        /// <summary>
+        /// 穝糤场
+        /// </summary>
+        /// <param name="model"></param>
+        /// <returns></returns>
         [HttpPost("")]
         public async Task<ActionResult<Department>> PostDeparmtnet(Department model)
         {
@@ -49,6 +77,12 @@ namespace ASPNETCore5Demo.Controllers
             return Created("api/GetDepartmentById/" + model.DepartmentId, model);
         }
 
+        /// <summary>
+        /// 穝场
+        /// </summary>
+        /// <param name="id"></param>
+        /// <param name="model"></param>
+        /// <returns></returns>
         [HttpPut("{id}")]
         public async Task<IActionResult> PutDepartment(int id, Department model)
         {
@@ -62,6 +96,11 @@ namespace ASPNETCore5Demo.Controllers
             return Ok(d);
         }
 
+        /// <summary>
+        /// 埃场
+        /// </summary>
+        /// <param name="id"></param>
+        /// <returns></returns>
         [HttpDelete("{id}")]
         public async Task<ActionResult<Department>> DeleteDepartmentlById(int id)
         {
