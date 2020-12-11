@@ -10,30 +10,29 @@ namespace ASPNETCore5Demo.Models
     {
         public override int SaveChanges()
         {
-
-            ModifiedHandler(this);
+            SaveChangeHandler(this);
             return base.SaveChanges();
         }
 
         public override int SaveChanges(bool acceptAllChangesOnSuccess)
         {
-            ModifiedHandler(this);
+            SaveChangeHandler(this);
             return base.SaveChanges(acceptAllChangesOnSuccess);
         }
 
         public override Task<int> SaveChangesAsync(bool acceptAllChangesOnSuccess, CancellationToken cancellationToken = default)
         {
-            ModifiedHandler(this);
+            SaveChangeHandler(this);
             return base.SaveChangesAsync(acceptAllChangesOnSuccess, cancellationToken);
         }
 
         public override Task<int> SaveChangesAsync(CancellationToken cancellationToken = default)
         {
-            ModifiedHandler(this);
+            SaveChangeHandler(this);
             return base.SaveChangesAsync(cancellationToken);
         }
 
-        private void ModifiedHandler(ContosoUniversityContext context)
+        private void SaveChangeHandler(ContosoUniversityContext context)
         {
             var entities = context.ChangeTracker.Entries();
 
@@ -44,6 +43,7 @@ namespace ASPNETCore5Demo.Models
 
                 if (entity.State == EntityState.Modified)
                 {
+                    // add DateModified time  if exist DateModified column
                     if (props.Any(p => p.Name.Equals("DateModified", StringComparison.InvariantCultureIgnoreCase)))
                     {
                         entity.CurrentValues.SetValues(new { DateModified = DateTime.Now });
