@@ -47,6 +47,7 @@ namespace ASPNETCore5Demo
                 options.AddDefaultPolicy(builder =>
                 {
                     builder.WithOrigins("https://xxx.com")
+                    .SetIsOriginAllowedToAllowWildcardSubdomains()
                     .AllowAnyHeader()
                     .AllowAnyMethod();
                 });
