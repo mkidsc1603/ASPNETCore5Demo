@@ -4,9 +4,11 @@ using System.Linq;
 using System.Threading.Tasks;
 using Microsoft.AspNetCore.Mvc;
 using ASPNETCore5Demo.Models;
+using Microsoft.AspNetCore.Http;
 
 namespace ASPNETCore5Demo.Controllers
 {
+    [Produces("application/json")] // 強迫response皆轉為json
     [Route("api/[controller]")]
     [ApiController]
     public class CourseController : ControllerBase
@@ -15,6 +17,17 @@ namespace ASPNETCore5Demo.Controllers
         public CourseController(ContosoUniversityContext db)
         {
             this.db = db;
+        }
+
+
+        [HttpGet("empty")]
+        public IActionResult Empty()
+        {
+            // 若只想回傳字串
+
+            return Ok("TEST"); // 若沒有添加[Produces("application/json")] 會產生string 但browser會序列化失敗
+            // 另一種解法
+            // return new JsonResult("TEST");
         }
 
         /// <summary>
@@ -99,6 +112,8 @@ namespace ASPNETCore5Demo.Controllers
         /// <param name="coures"></param>
         /// <returns></returns>
         [HttpPost("")]
+        [ProducesResponseType(StatusCodes.Status201Created)]
+        [ProducesDefaultResponseType]
         public async Task<ActionResult> PostCourse(Course coures)
         {
             this.db.Course.Add(coures);
@@ -114,6 +129,8 @@ namespace ASPNETCore5Demo.Controllers
         /// <param name="course"></param>
         /// <returns></returns>
         [HttpPut("{id}")]
+        [ProducesResponseType(StatusCodes.Status204NoContent)]
+        [ProducesDefaultResponseType]
         public async Task<ActionResult> PutCourse(int id, Course course)
         {
             var c = this.db.Course.Find(id);

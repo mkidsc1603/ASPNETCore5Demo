@@ -5,6 +5,10 @@ VisualStudioVersion = 16.0.30717.126
 MinimumVisualStudioVersion = 10.0.40219.1
 Project("{9A19103F-16F7-4668-BE54-9A1E7A4F7556}") = "ASPNETCore5Demo", "ASPNETCore5Demo.csproj", "{382D5AFD-8A8B-4EB4-9F1E-EDE30D397B48}"
 EndProject
+Project("{00D1A9C2-B5F0-4AF3-8072-F6C62B433612}") = "ASPNETCore.DB", "..\ASPNETCore.DB\ASPNETCore.DB.sqlproj", "{03936C3A-9215-479C-8F1C-50FDF95003DA}"
+EndProject
+Project("{FAE04EC0-301F-11D3-BF4B-00C04F79EFBC}") = "ASPNETCore.CNS", "..\ASPNETCore.CNS\ASPNETCore.CNS.csproj", "{AD08FB8C-0904-43E4-984A-0AFFE4375CD4}"
+EndProject
 Global
 	GlobalSection(SolutionConfigurationPlatforms) = preSolution
 		Debug|Any CPU = Debug|Any CPU
@@ -15,6 +19,16 @@ Global
 		{382D5AFD-8A8B-4EB4-9F1E-EDE30D397B48}.Debug|Any CPU.Build.0 = Debug|Any CPU
 		{382D5AFD-8A8B-4EB4-9F1E-EDE30D397B48}.Release|Any CPU.ActiveCfg = Release|Any CPU
 		{382D5AFD-8A8B-4EB4-9F1E-EDE30D397B48}.Release|Any CPU.Build.0 = Release|Any CPU
+		{03936C3A-9215-479C-8F1C-50FDF95003DA}.Debug|Any CPU.ActiveCfg = Debug|Any CPU
+		{03936C3A-9215-479C-8F1C-50FDF95003DA}.Debug|Any CPU.Build.0 = Debug|Any CPU
+		{03936C3A-9215-479C-8F1C-50FDF95003DA}.Debug|Any CPU.Deploy.0 = Debug|Any CPU
+		{03936C3A-9215-479C-8F1C-50FDF95003DA}.Release|Any CPU.ActiveCfg = Release|Any CPU
+		{03936C3A-9215-479C-8F1C-50FDF95003DA}.Release|Any CPU.Build.0 = Release|Any CPU
+		{03936C3A-9215-479C-8F1C-50FDF95003DA}.Release|Any CPU.Deploy.0 = Release|Any CPU
+		{AD08FB8C-0904-43E4-984A-0AFFE4375CD4}.Debug|Any CPU.ActiveCfg = Debug|Any CPU
+		{AD08FB8C-0904-43E4-984A-0AFFE4375CD4}.Debug|Any CPU.Build.0 = Debug|Any CPU
+		{AD08FB8C-0904-43E4-984A-0AFFE4375CD4}.Release|Any CPU.ActiveCfg = Release|Any CPU
+		{AD08FB8C-0904-43E4-984A-0AFFE4375CD4}.Release|Any CPU.Build.0 = Release|Any CPU
 	EndGlobalSection
 	GlobalSection(SolutionProperties) = preSolution
 		HideSolutionNode = FALSE

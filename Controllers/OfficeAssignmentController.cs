@@ -2,6 +2,7 @@
 using Microsoft.AspNetCore.Mvc;
 using System.Collections.Generic;
 using System.Linq;
+using Microsoft.AspNetCore.Http;
 
 // For more information on enabling Web API for empty projects, visit https://go.microsoft.com/fwlink/?LinkID=397860
 
@@ -31,6 +32,8 @@ namespace ASPNETCore5Demo.Controllers
         }
 
         [HttpPost]
+        [ProducesResponseType(StatusCodes.Status201Created)]
+        [ProducesDefaultResponseType]
         public IActionResult Post([FromBody] OfficeAssignment model)
         {
             if (this.db.OfficeAssignment.Any(o => o.InstructorId.Equals(model.InstructorId)))
@@ -47,6 +50,8 @@ namespace ASPNETCore5Demo.Controllers
         }
 
         [HttpPut("{id}")]
+        [ProducesResponseType(StatusCodes.Status204NoContent)]
+        [ProducesDefaultResponseType]
         public IActionResult Put(int id, [FromBody] OfficeAssignment model)
         {
             var item = this.db.OfficeAssignment.Find(id);

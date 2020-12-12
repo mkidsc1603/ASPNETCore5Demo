@@ -35,7 +35,11 @@ namespace ASPNETCore5Demo
                 options.UseSqlServer(Configuration.GetConnectionString("DefaultConnection")));
 
             // resolve circular reference of db model navigation property
-            services.AddControllers().AddNewtonsoftJson(options => options.SerializerSettings.ReferenceLoopHandling = ReferenceLoopHandling.Ignore);
+            services.AddControllers().AddNewtonsoftJson(options =>
+            {
+                options.SerializerSettings.NullValueHandling = NullValueHandling.Ignore;
+                options.SerializerSettings.ReferenceLoopHandling = ReferenceLoopHandling.Ignore;
+            });
 
             services.AddSwaggerGen(c =>
             {

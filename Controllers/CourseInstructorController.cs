@@ -4,6 +4,7 @@ using System;
 using System.Collections.Generic;
 using System.Linq;
 using System.Threading.Tasks;
+using Microsoft.AspNetCore.Http;
 
 // For more information on enabling Web API for empty projects, visit https://go.microsoft.com/fwlink/?LinkID=397860
 
@@ -53,6 +54,8 @@ namespace ASPNETCore5Demo.Controllers
         /// <param name="model"></param>
         /// <returns></returns>
         [HttpPost]
+        [ProducesResponseType(StatusCodes.Status201Created)]
+        [ProducesDefaultResponseType]
         public IActionResult Post([FromBody] CourseInstructor model)
         {
             var IsExist = this.db.CourseInstructor.Any(x => x.CourseId.Equals(model.CourseId) && x.InstructorId.Equals(model.InstructorId));
@@ -77,6 +80,8 @@ namespace ASPNETCore5Demo.Controllers
         /// <param name="InstructorId"></param>
         /// <returns></returns>
         [HttpPut("/course/{CourseId}")]
+        [ProducesResponseType(StatusCodes.Status204NoContent)]
+        [ProducesDefaultResponseType]
         public IActionResult Put(int CourseId, [FromBody] int InstructorId)
         {
             var item = this.db.CourseInstructor.Where(c => c.CourseId.Equals(CourseId)).FirstOrDefault();

@@ -5,6 +5,7 @@ using System.Threading.Tasks;
 using ASPNETCore5Demo.Models;
 using Microsoft.AspNetCore.Mvc;
 using Microsoft.EntityFrameworkCore;
+using Microsoft.AspNetCore.Http;
 
 namespace ASPNETCore5Demo.Controllers
 {
@@ -23,11 +24,8 @@ namespace ASPNETCore5Demo.Controllers
         /// </summary>
         /// <returns></returns>
         [HttpGet("")]
-        public async Task<ActionResult<IEnumerable<Department>>> GetDepartments()
+        public IEnumerable<Department> GetDepartments()
         {
-            // TODO: Your code here
-            await Task.Yield();
-
             return this.db.Department.ToList();
         }
 
@@ -67,6 +65,8 @@ namespace ASPNETCore5Demo.Controllers
         /// <param name="model"></param>
         /// <returns></returns>
         [HttpPost("")]
+        [ProducesResponseType(StatusCodes.Status201Created)]
+        [ProducesDefaultResponseType]
         public async Task<ActionResult<Department>> PostDeparmtnet(Department model)
         {
             // TODO: Your code here
