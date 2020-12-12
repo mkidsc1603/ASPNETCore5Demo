@@ -20,12 +20,15 @@ namespace ASPNETCore5Demo.Controllers
         }
 
 
+        
+
         [HttpGet("empty")]
         public IActionResult Empty()
         {
+            throw new Exception("Test");
             // 若只想回傳字串
 
-            return Ok("TEST"); // 若沒有添加[Produces("application/json")] 會產生string 但browser會序列化失敗
+            //return Ok("TEST"); // 若沒有添加[Produces("application/json")] 會產生string 但browser會序列化失敗
             // 另一種解法
             // return new JsonResult("TEST");
         }
