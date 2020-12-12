@@ -20,7 +20,11 @@ namespace ASPNETCore5Demo.Controllers
         }
 
 
-        
+        [HttpGet("err")]
+        public IActionResult Err()
+        {
+            throw new Exception("OH");
+        }
 
         [HttpGet("empty")]
         public IActionResult Empty()

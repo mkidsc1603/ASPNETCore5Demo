@@ -41,6 +41,17 @@ namespace ASPNETCore5Demo
                 options.SerializerSettings.ReferenceLoopHandling = ReferenceLoopHandling.Ignore;
             });
 
+            // handler cors
+            services.AddCors(options =>
+            {
+                options.AddDefaultPolicy(builder =>
+                {
+                    builder.WithOrigins("https://xxx.com")
+                    .AllowAnyHeader()
+                    .AllowAnyMethod();
+                });
+            });
+
             services.AddSwaggerGen(c =>
             {
                 c.SwaggerDoc("v1", new OpenApiInfo { Title = "ASPNETCore5Demo", Version = "v1" });
@@ -60,6 +71,8 @@ namespace ASPNETCore5Demo
             app.UseExceptionHandler("/Error");
 
             app.UseHttpsRedirection();
+
+            app.UseCors();
 
             app.UseRouting();
 

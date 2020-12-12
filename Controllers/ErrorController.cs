@@ -14,7 +14,7 @@ namespace ASPNETCore5Demo.Controllers
     public class ErrorController : ControllerBase
     {
 
-        [Route("/error")]
+        [HttpGet("/error")]
         public IActionResult Error([FromServices] IHostEnvironment webHostEnviroment)
         {
             var feature = HttpContext.Features.Get<IExceptionHandlerPathFeature>();
