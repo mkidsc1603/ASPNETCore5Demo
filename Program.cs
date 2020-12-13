@@ -21,6 +21,8 @@ namespace ASPNETCore5Demo
                 .ConfigureWebHostDefaults(webBuilder =>
                 {
                     webBuilder.UseStartup<Startup>();
+
+                   
                 });
     }
 }
