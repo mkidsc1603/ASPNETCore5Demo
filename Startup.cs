@@ -18,6 +18,7 @@ using ASPNETCore5Demo.Helpers;
 using Microsoft.AspNetCore.Authentication.JwtBearer;
 using Microsoft.IdentityModel.Tokens;
 using System.Text;
+using ASPNETCore5Demo.Models.Custom;
 
 namespace ASPNETCore5Demo
 {
@@ -33,6 +34,15 @@ namespace ASPNETCore5Demo
         // This method gets called by the runtime. Use this method to add services to the container.
         public void ConfigureServices(IServiceCollection services)
         {
+            // load setting priority
+            // refrerence : https://github.com/dotnet/runtime/blob/master/src/libraries/Microsoft.Extensions.Hosting/src/Host.cs?fbclid=IwAR0hAzSi_d2iHgSeBUVSf3NCxzk-dubY7i_vUc2igZWkKDu_PEmb5itElm0#L56-L134
+
+            // set by enviroment(cmd) variable : set JwtSetting__Issuer="xxxx"
+            // set by enviroment(powershell) : $env:JwtSetting__Issuer="xxxx"
+            // set by command : dotnet run -- -JwtSetting:Issuer="xxxx"
+
+            // jwt setting
+            services.Configure<JwtSetting>(Configuration.GetSection("JwtSettings"));
 
             // using Microsoft.EntityFrameworkCore;
             services.AddDbContext<ContosoUniversityContext>(options =>

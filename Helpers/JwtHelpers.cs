@@ -6,22 +6,28 @@ using System.Text;
 using System.IdentityModel.Tokens.Jwt;
 using Microsoft.Extensions.Configuration;
 using Microsoft.IdentityModel.Tokens;
+using ASPNETCore5Demo.Models.Custom;
+using Microsoft.Extensions.Options;
 
 namespace ASPNETCore5Demo.Helpers
 {
     public class JwtHelpers
     {
         private readonly IConfiguration Configuration;
+        private IOptions<JwtSetting> jwtSetting { get; set; }
 
-        public JwtHelpers(IConfiguration configuration)
+        public JwtHelpers(IConfiguration configuration, IOptions<JwtSetting> jwtSetting)
         {
+            this.jwtSetting = jwtSetting;
             this.Configuration = configuration;
         }
 
         public string GenerateToken(string userName, int expireMinutes = 30)
         {
-            var issuer = Configuration.GetValue<string>("JwtSettings:Issuer");
-            var signKey = Configuration.GetValue<string>("JwtSettings:SignKey");
+            //var issuer = Configuration.GetValue<string>("JwtSettings:Issuer");
+            //var signKey = Configuration.GetValue<string>("JwtSettings:SignKey");
+            var issuer = jwtSetting.Value.Issuer;
+            var signKey = jwtSetting.Value.SignKey;
 
             // Configuring "Claims" to your JWT Token
             var claims = new List<Claim>();
