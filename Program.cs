@@ -16,6 +16,7 @@ namespace ASPNETCore5Demo
         public static int Main(string[] args)
         {
             Log.Logger = new LoggerConfiguration()
+                .WriteTo.Seq("http://localhost:5341")
            .MinimumLevel.Debug()
            .MinimumLevel.Override("Microsoft", LogEventLevel.Information)
            .Enrich.FromLogContext()

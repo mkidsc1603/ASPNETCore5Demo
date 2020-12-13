@@ -25,12 +25,12 @@ namespace ASPNETCore5Demo.Controllers
         [HttpGet("")]
         public ActionResult<JwtSetting> Get()
         {
-            logger.LogTrace("Trace");
-            logger.LogDebug("Debug");
-            logger.LogInformation("Info");
-            logger.LogWarning("warning");
-            logger.LogError("Error");
-            logger.LogCritical("Critical");
+            logger.LogTrace("Trace {ID}", "Andy");
+            logger.LogDebug("Debug {ID}", "Andy");
+            logger.LogInformation("Info {ID}", "Andy");
+            logger.LogWarning("warning {ID}", "Andy");
+            logger.LogError("Error {ID}", "Andy");
+            logger.LogCritical("Critical {ID}", "Andy");
 
             return this.jwtSetting.Value;
         }
