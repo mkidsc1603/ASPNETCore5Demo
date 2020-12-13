@@ -1,6 +1,7 @@
 ﻿using ASPNETCore5Demo.Helpers;
 using ASPNETCore5Demo.Models;
 using ASPNETCore5Demo.Models.Custom;
+using Microsoft.AspNetCore.Authorization;
 using Microsoft.AspNetCore.Http;
 using Microsoft.AspNetCore.Mvc;
 using System;
@@ -38,6 +39,31 @@ namespace ASPNETCore5Demo.Controllers
             {
                 return BadRequest();
             }
+        }
+
+
+        [Authorize]
+        [HttpGet("/refresh")]
+        public ActionResult<OUT_LoginModel> PostRefresh()
+        {
+            return new OUT_LoginModel
+            {
+                Token = jwt.GenerateToken(User.Identity.Name, 20)
+            };
+        }
+
+        [Authorize]
+        [HttpGet("~/claims")]
+        public ActionResult GetClaims()
+        {
+            return Ok(User.Claims.Select(p => new { p.Type, p.Value }));
+        }
+
+        [Authorize]
+        [HttpGet("~/username")]
+        public ActionResult GetUsername()
+        {
+            return Ok(User.Identity.Name);
         }
 
         private bool ValidateUser(IN_LoginModel model)
